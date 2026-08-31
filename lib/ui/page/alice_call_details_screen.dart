@@ -65,8 +65,12 @@ class _AliceCallDetailsScreenState extends State<AliceCallDetailsScreen>
           backgroundColor: AliceConstants.lightRed,
           key: Key('share_key'),
           onPressed: () async {
-            Share.share(await _getSharableResponseString(),
-                subject: 'Request Details');
+            SharePlus.instance.share(
+              ShareParams(
+                text: await _getSharableResponseString(),
+                subject: 'Request Details',
+              ),
+            );
             await Clipboard.setData(
                 ClipboardData(text: await _getSharableResponseString()));
           },
